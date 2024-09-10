@@ -1,9 +1,0 @@
-
-version: 2
-
-models:
-  - name: ga4_raw
-    description: "A starter dbt model"
-
-  - name: ga4_view
-    description: "A starter dbt model"

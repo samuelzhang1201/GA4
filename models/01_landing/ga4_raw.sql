@@ -1,10 +1,10 @@
 
-/*
-    Welcome to your first dbt model!
-    Did you know that you can also configure models directly within SQL files?
-    This will override configurations stated in dbt_project.yml
+{{ config(
+    materialized='table'
+) }}
 
-    Try changing "table" to "view" below
-*/
+{% set tables_to_union = list_tables('bigquery-public-data', 'ga4_obfuscated_sample_ecommerce', 'events_') %}
 
-SELECT * FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.*`
+{{ dbt_utils.union_relations(
+    relations=tables_to_union
+) }}
