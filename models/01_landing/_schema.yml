@@ -1,0 +1,6 @@
+
+version: 2
+
+models:
+  - name: ga4_raw
+    description: "original source table"
