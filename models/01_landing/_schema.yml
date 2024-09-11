@@ -2,5 +2,5 @@
 version: 2
 
 models:
-  - name: ga4_raw
-    description: "original source table"
+  - name: ga4_raw_landing
+    description: "original landing source table"

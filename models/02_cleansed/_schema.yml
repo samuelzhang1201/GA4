@@ -1,0 +1,6 @@
+
+version: 2
+
+models:
+  - name: cleansed_ga4_raw
+    description: "flattened raw table"

@@ -30,15 +30,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  01_landing:
-    +materialized: table
-    +schema: landing
-  02_cleansed:
-    +materialized: table
-    +schema: cleansed
-  03_enterprise:
-    +materialized: table
-    +schema: enterprise
-  04_presentation:
-    +materialized: table
-    +schema: presentation
+  GA4:
+    01_landing:
+      +materialized: table
+      +schema: landing
+    02_cleansed:
+      +materialized: table
+      +schema: cleansed
+    03_enterprise:
+      +materialized: table
+      +schema: enterprise
+    04_presentation:
+      +materialized: table
+      +schema: presentation
