@@ -1,6 +1,6 @@
 
 WITH ga4_raw AS (
-    SELECT * FROM {{ ref('ga4_raw_landing')}}
+    SELECT * FROM {{ ref('landing_ga4_raw')}}
 )
 , flattened_data AS (
 SELECT
@@ -29,6 +29,8 @@ SELECT
     , traffic_source.medium AS traffic_medium
     , traffic_source.name AS traffic_name
     , traffic_source.source AS traffic_source
+    , stream_id
+    , platform
 FROM
     ga4_raw,
     UNNEST(event_params) AS ep

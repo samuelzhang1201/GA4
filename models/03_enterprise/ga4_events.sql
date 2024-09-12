@@ -22,7 +22,7 @@ select
     , event_date
     , event_timestamp
     , event_name
-    , event_value as ga_session_id
+    , ga_session_id
     , event_bundle_sequence_id
     , user_pseudo_id
     , user_first_touch_timestamp
