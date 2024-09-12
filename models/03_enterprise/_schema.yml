@@ -4,9 +4,9 @@ version: 2
 models:
   - name: ga4_events
     description: "ga4_events"
-  - name: ga4_devices
+  - name: ga4_device
     description: "ga4_devices"
-  - name: ga4_session_locations
+  - name: ga4_session_location
     description: "ga4_session_locations"
   - name: ga4_session_traffic
     description: "ga4_session_traffic"
