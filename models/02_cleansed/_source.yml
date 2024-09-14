@@ -1,8 +1,0 @@
-version: 2
-
-sources:
-  - name: ga4
-    database: dbttest-435106
-    schema: landing
-    tables:
-      - name: landing_ga4_raw

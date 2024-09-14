@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ga4
+    database: dbttest-435106
+    schema: landing
+    tables:
+      - name: landing_ga4_raw
+        freshness:
+          warn_after:
+            count: 12
+            period: hour
+          error_after:
+            count: 24
+            period: hour
+          filter: _PARTITIONDATE>= date_add(current_date, INTERVAL -2 DAY)
+        loaded_at_field: _PARTITIONTIME

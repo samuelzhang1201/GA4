@@ -8,7 +8,5 @@ As the GA4 tables are multiple tables with same table structure and may increase
 
 
 My workaround here in the case:
-- create a marco to list all table names using INFORMATION_SCHEMA
-- Use dbt_utils package to union all tables as a table
-- I believe there must be similar ways to pipeline the additional files adding to the landing schema as if I suggested in snowflake and S3, but I am not going to spend time to build such cloud function for this particular case. Instead i will focus on modelling.
-- ga4_raw.sql is considered to be an app fetching raw data from source system.
+- use python script to load data from public dataset into gcs
+- load gcs tables into landing_ga4_raw table

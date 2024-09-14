@@ -10,3 +10,5 @@ models:
     description: "ga4_session_locations"
   - name: ga4_session_traffic
     description: "ga4_session_traffic"
+  - name: ga4_user_id_merged
+    description: "ga4_user_id_merged"
