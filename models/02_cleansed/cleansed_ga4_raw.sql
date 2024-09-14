@@ -1,3 +1,14 @@
+{{
+    config(
+        materialized='incremental',
+        on_schema_change='fail',
+        incremental_strategy='insert_overwrite',
+        partition_by={
+            "field":"event_date",
+            "data_type": "date"
+        }
+    )
+}}
 
 WITH ga4_raw AS (
     SELECT * FROM {{ ref('landing_ga4_raw')}}
@@ -31,6 +42,7 @@ SELECT
     , traffic_source.source AS traffic_source
     , stream_id
     , platform
+    , current_datetime('UTC') as sys_insert_datetime
 FROM
     ga4_raw,
     UNNEST(event_params) AS ep

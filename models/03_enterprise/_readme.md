@@ -7,3 +7,5 @@ one session contains multiple event bundle,
 one timestamp can only has one event bundle, 
 
 one event bundle can have multiple events.
+
+In enterprise layer, I keep all the information in a normalized structure, divding by different concepts.

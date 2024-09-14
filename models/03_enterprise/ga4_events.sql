@@ -1,5 +1,19 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='event_key',
+        on_schema_change='fail',
+        incremental_strategy='merge',
+    )
+}}
+
 WITH ga4_raw as (
     select * from {{ ref('cleansed_ga4_raw') }}
+    {% if is_incremental() %}
+
+    where sys_insert_datetime >= (select date_add(max(sys_insert_datetime), INTERVAL -2 DAY) from {{ this }} )
+
+    {% endif %}
 )
 , ga4_events as (
 select 
@@ -28,6 +42,7 @@ select
     , user_first_touch_timestamp
     , stream_id
     , platform
+    , current_datetime('UTC') as sys_insert_datetime
   from ga4_events
 )
   select * from final 

@@ -14,6 +14,7 @@ WITH ga4_raw as (
     , language
     , os_version
     , is_limited_ad_tracking
+    , current_datetime('UTC') as sys_insert_datetime
   from 
     ga4_raw
     where event_param = 'ga_session_id'

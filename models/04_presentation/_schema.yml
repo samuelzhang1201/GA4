@@ -4,3 +4,18 @@ version: 2
 models:
   - name: fact_session
     description: "fact_session"
+    columns:
+      - name: ga_session_id
+        description: unique identifier for a session
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: unique identifier for a customer
+          - unique
+          - not_null
+      - name: session_start
+      - name: session_end
+      - name: page_view_count
+      - name: include_search
+      - name: event_date
