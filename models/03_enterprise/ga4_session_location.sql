@@ -6,7 +6,8 @@
         incremental_strategy='merge',
     )
 }}
-WITH ga4_raw as (
+
+with ga4_raw as (
     select * from {{ ref('cleansed_ga4_raw') }}
     {% if is_incremental() %}
 

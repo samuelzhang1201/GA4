@@ -11,7 +11,11 @@
 }}
 
 WITH ga4_raw AS (
-    SELECT * FROM {{ ref('landing_ga4_raw')}}
+    SELECT * FROM {{ source('ga4','landing_ga4_raw') }}
+        {% if is_incremental() %}
+        -- Filter for new or updated records only in incremental loads
+        WHERE event_date >= (SELECT MAX(event_date) FROM {{ this }})
+    {% endif %}
 )
 , flattened_data AS (
 SELECT

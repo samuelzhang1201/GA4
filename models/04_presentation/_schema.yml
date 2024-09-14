@@ -19,3 +19,30 @@ models:
       - name: page_view_count
       - name: include_search
       - name: event_date
+
+  - name: fact_session_init_device
+    description: "fact_session_device"
+    columns:
+      - name: ga_session_id
+        description: unique identifier for a session
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_session_init_location
+    description: "fact_session_device"
+    columns:
+      - name: ga_session_id
+        description: unique identifier for a session
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_session_init_traffic
+    description: "fact_session_init_traffic"
+    columns:
+      - name: ga_session_id
+        description: unique identifier for a session
+        tests:
+          - unique
+          - not_null

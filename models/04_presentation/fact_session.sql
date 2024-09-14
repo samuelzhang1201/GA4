@@ -17,7 +17,7 @@ with events as (
 
     {% endif %}
 )
-)
+
 , user_id as (
     select * from {{ ref('ga4_user_id_merged') }}
 )
@@ -31,6 +31,7 @@ with events as (
         , event_name
         , row_number() over(partition by a.ga_session_id, event_name order by event_name) as event_rnb
         , case when event_name = 'view_search_results' then 1 else 0 end as include_search
+        , user_first_touch_timestamp
         , event_date
         , event_bundle_sequence_id
     from events a
@@ -49,6 +50,8 @@ with events as (
         , max(event_rnb) over(partition by ga_session_id, event_name order by event_name) as event_count
         , event_rnb = max(event_rnb) over(partition by ga_session_id, event_name order by event_name) as is_max_equal_to_rnb
         , include_search
+        , user_first_touch_timestamp
+        , case when user_first_touch_timestamp = session_start then True else False end is_new_user
         , event_date
         , event_bundle_sequence_id
     from
@@ -69,6 +72,7 @@ with events as (
         , session_end
         , event_count as page_view_count
         , include_search
+        , is_new_user
         , event_date
         , current_datetime('UTC') as sys_insert_datetime
     from 
