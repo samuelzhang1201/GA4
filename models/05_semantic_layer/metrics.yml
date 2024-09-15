@@ -22,7 +22,7 @@ metrics:
       measure:
         name: total_sessions
     filter: |
-        {{ Dimension('ga_session_id__is_search_included') }} = 1
+        {{ Dimension('fact_session_pk__is_search_included') }} = 1
     label: total_sessions_with_search
 
   - name: total_user_numbers
@@ -42,4 +42,4 @@ metrics:
         name: total_users
     label: total_new_users
     filter: |
-        {{ Dimension('ga_session_id__is_new_user') }} = True
+        {{ Dimension('fact_session_pk__is_new_user') }} = True

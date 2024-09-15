@@ -6,8 +6,12 @@ semantic_models:
       agg_time_dimension: event_date
 
     entities: #joining keys.#
-      - name: ga_session_id
+      - name: fact_session_pk
         type: primary
+        expr: ga_session_id
+
+      - name: ga_session_id
+        type: foreign
         expr: ga_session_id
 
       - name: user_id
@@ -61,12 +65,8 @@ semantic_models:
     
     entities: #joining keys.#
 
-      - name: ga_session_id_pk
-        type: primary
-        expr: ga_session_id
-
       - name: ga_session_id
-        type: foreign
+        type: primary
         expr: ga_session_id
 
       - name: user_id
