@@ -33,9 +33,9 @@ semantic_models:
         type: categorical
         expr: is_new_user
 
-      - name: include_search
+      - name: is_search_included
         type: categorical
-        expr: include_search
+        expr: is_search_included
 
 
     measures: 
