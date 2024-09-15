@@ -59,6 +59,12 @@ semantic_models:
         agg: count_distinct
         expr: user_id
 
+      - name: avg_session_duration_in_sec
+        description: "avg_session_duration_in_sec"
+        agg: average
+        expr: TIMESTAMP_DIFF(session_end, session_start, SECOND)
+
+
   - name: device
     model: ref('fact_session_init_device') 
     description: "device"
@@ -85,3 +91,61 @@ semantic_models:
       - name: device_mode_name
         type: categorical
         expr: device_mode_name
+
+  - name: location
+    model: ref('fact_session_init_location') 
+    description: "location"
+    
+    entities: #joining keys.#
+
+      - name: ga_session_id
+        type: primary
+        expr: ga_session_id
+
+      - name: user_id
+        type: foreign
+        expr: user_id
+
+    dimensions: 
+      - name: continent
+        type: categorical
+        expr: continent
+
+      - name: country
+        type: categorical
+        expr: country
+
+      - name: region
+        type: categorical
+        expr: region
+
+      - name: city
+        type: categorical
+        expr: city
+
+  - name: traffic
+    model: ref('fact_session_init_traffic') 
+    description: "traffic"
+    
+    entities: #joining keys.#
+
+      - name: ga_session_id
+        type: primary
+        expr: ga_session_id
+
+      - name: user_id
+        type: foreign
+        expr: user_id
+
+    dimensions: 
+      - name: traffic_medium
+        type: categorical
+        expr: traffic_medium
+
+      - name: traffic_name
+        type: categorical
+        expr: traffic_name
+
+      - name: traffic_source
+        type: categorical
+        expr: traffic_source
