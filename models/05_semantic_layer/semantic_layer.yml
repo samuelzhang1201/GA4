@@ -42,24 +42,23 @@ semantic_models:
         type: categorical
         expr: is_search_included
 
-
     measures: 
-      - name: page_view_count
+      - name: page_views
         description: "page_view_count"
         agg: sum
         expr: page_view_count
 
-      - name: total_sessions
+      - name: total_sessions_number
         description: "total_sessions"
         agg: count_distinct
         expr: ga_session_id
 
-      - name: total_users
+      - name: total_users_numbers
         description: "total_users"
         agg: count_distinct
         expr: user_id
 
-      - name: avg_session_duration_in_sec
+      - name: avg_session_duration
         description: "avg_session_duration_in_sec"
         agg: average
         expr: TIMESTAMP_DIFF(session_end, session_start, SECOND)
