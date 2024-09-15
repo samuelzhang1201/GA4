@@ -43,3 +43,8 @@ semantic_models:
         description: "page_view_count"
         agg: sum
         expr: page_view_count
+
+      - name: total_sessions
+        description: "total_sessions"
+        agg: count_distinct
+        expr: ga_session_id

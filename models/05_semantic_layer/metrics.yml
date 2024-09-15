@@ -7,3 +7,20 @@ metrics:
         name: page_view_count
     label: Total Page Views
 
+  - name: total_sessions
+    description: total_sessions
+    type: simple
+    type_params:                         
+      measure:
+        name: total_sessions
+    label: total_sessions
+
+  - name: total_sessions_with_search
+    description: total_sessions
+    type: simple
+    type_params:                         
+      measure:
+        name: total_sessions
+    filter: |
+        {{ Dimension('ga_session_id__is_search_included') }} = 1
+    label: total_sessions_with_search
