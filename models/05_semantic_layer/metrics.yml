@@ -1,0 +1,9 @@
+metrics:
+  - name: total_page_views
+    description: total_page_views  
+    type: simple
+    type_params:                         
+      measure:
+        name: page_view_count
+    label: Total Page Views
+
