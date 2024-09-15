@@ -1,15 +1,25 @@
-Welcome to your new dbt project!
+Modelling Principle:
 
-### Using the starter project
+high level: 
+conceptual model->logical model->physical model.
 
-Try running the following commands:
-- dbt run
-- dbt test
+low level:
+Landing-> cleansed-> enterprise->presentation->semantic layer
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+dbt env setup:
+I have Dev and Prod environments, however, in real world, we will have dev, staging, and prod. For this case study, I just skip staging environment.
+
+CI/CD:
+I developed on my dev, and push to github remote, when create PR against prod, will automatically trigger a slim_ci test, which will test all changed nodes from last status.
+
+pipeline:
+Can use cloud scheduler or use airflow to pipeline.
+
+semantic layer:
+I use cloud cli to query sl result, however, in real world, semantic layer will be conncected to BI tools such as tableau or Power BI, excel , gsheet, etc.
+
+Ingetsion:
+I am not familar with GCP(I am AWS and snowflake user). But generally speaking, I need to load data into GCS (simliar to AWS S3 bucket), and then load into landing area.
+in snowflake, I may use snowpipe and steam function to pipeline, and setup AWS S3 event trigger to snowflake. I believe in GCP we may have similar function.
+
