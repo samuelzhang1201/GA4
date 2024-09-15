@@ -4,17 +4,23 @@
         on_schema_change='fail',
         incremental_strategy='insert_overwrite',
         partition_by={
-            "field":"event_date",
+            "field":"PARTITIONTIME",
             "data_type": "date"
         }
     )
 }}
 
 WITH ga4_raw AS (
-    SELECT * FROM {{ source('ga4','landing_ga4_raw') }}
+    SELECT 
+        *
+        ,_PARTITIONDATE as PARTITIONTIME
+    FROM {{ source('ga4','landing_ga4_raw') }}
         {% if is_incremental() %}
         -- Filter for new or updated records only in incremental loads
-        WHERE event_date >= (SELECT MAX(event_date) FROM {{ this }})
+        WHERE _PARTITIONDATE >= (SELECT MAX(_PARTITIONDATE) FROM {{ this }})
+        {% else %}
+        -- Full load for the first time, select all partitions
+        WHERE _PARTITIONDATE IS NOT NULL
     {% endif %}
 )
 , flattened_data AS (
@@ -46,6 +52,7 @@ SELECT
     , traffic_source.source AS traffic_source
     , stream_id
     , platform
+    , PARTITIONTIME
     , current_datetime('UTC') as sys_insert_datetime
 FROM
     ga4_raw,
