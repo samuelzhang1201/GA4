@@ -9,6 +9,7 @@ semantic_models:
       - name: ga_session_id
         type: primary
         expr: ga_session_id
+
       - name: user_id
         type: foreign
         expr: user_id
@@ -48,3 +49,39 @@ semantic_models:
         description: "total_sessions"
         agg: count_distinct
         expr: ga_session_id
+
+      - name: total_users
+        description: "total_users"
+        agg: count_distinct
+        expr: user_id
+
+  - name: device
+    model: ref('fact_session_init_device') 
+    description: "device"
+    
+    entities: #joining keys.#
+
+      - name: ga_session_id_pk
+        type: primary
+        expr: ga_session_id
+
+      - name: ga_session_id
+        type: foreign
+        expr: ga_session_id
+
+      - name: user_id
+        type: foreign
+        expr: user_id
+
+    dimensions: 
+      - name: device_category
+        type: categorical
+        expr: device_category
+
+      - name: device_mobile_brand
+        type: categorical
+        expr: device_mobile_brand
+
+      - name: device_mode_name
+        type: categorical
+        expr: device_mode_name

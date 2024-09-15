@@ -24,3 +24,22 @@ metrics:
     filter: |
         {{ Dimension('ga_session_id__is_search_included') }} = 1
     label: total_sessions_with_search
+
+  - name: total_user_numbers
+    description: total_user_numbers
+    type: simple
+    type_params:                         
+      measure:
+        name: total_users
+    label: total_user_numbers
+
+
+  - name: total_new_users
+    description: total_new_users
+    type: simple
+    type_params:                         
+      measure:
+        name: total_users
+    label: total_new_users
+    filter: |
+        {{ Dimension('ga_session_id__is_new_user') }} = True
