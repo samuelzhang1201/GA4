@@ -1,0 +1,45 @@
+semantic_models:
+  - name: session
+    model: ref('fact_session') 
+    description: "sessions"
+    defaults: 
+      agg_time_dimension: event_date
+
+    entities: #joining keys.#
+      - name: ga_session_id
+        type: primary
+        expr: ga_session_id
+      - name: user_id
+        type: foreign
+        expr: user_id
+
+    dimensions: 
+      - name: session_start
+        type: time
+        type_params:
+          time_granularity: day
+
+      - name: session_end
+        type: time
+        type_params:
+          time_granularity: day
+
+      - name: event_date
+        type: time
+        type_params:
+          time_granularity: day
+
+      - name: is_new_user
+        type: categorical
+        expr: is_new_user
+
+      - name: include_search
+        type: categorical
+        expr: include_search
+
+
+    measures: 
+      - name: page_view_count
+        description: "page_view_count"
+        agg: sum
+        expr: page_view_count
