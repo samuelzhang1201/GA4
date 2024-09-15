@@ -43,12 +43,3 @@ jobs:
 
       - name: Deploy & Test Models (CI)
         run: dbt build --select state:modified+ --profiles-dir . --target slim_ci
-
-      - name: Generate dbt documentation
-        run: dbt docs generate
-
-      - name: Upload dbt artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: dbt-docs
-          path: target/
