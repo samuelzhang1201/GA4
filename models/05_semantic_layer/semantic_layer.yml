@@ -10,7 +10,7 @@ semantic_models:
         type: primary
         expr: ga_session_id
 
-      - name: fact_session_fk
+      - name: ga_session_id
         type: foreign
         expr: ga_session_id
 
@@ -65,12 +65,8 @@ semantic_models:
     
     entities: #joining keys.#
 
-      - name: device_session_pk
+      - name: ga_session_id
         type: primary
-        expr: ga_session_id
-
-      - name: device_session_fk
-        type: foreign
         expr: ga_session_id
 
       - name: user_id
