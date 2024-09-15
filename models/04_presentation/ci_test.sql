@@ -1,1 +1,1 @@
-select * from {{ ref('cleansed_ga4_raw') }} limit 10
+select * from {{ ref('cleansed_ga4_raw') }} limit 100
