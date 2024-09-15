@@ -1,7 +1,7 @@
 GA4:
   outputs:
     dev:
-      dataset: dev
+      dataset: samuel_dev
       job_execution_timeout_seconds: 300
       job_retries: 1
       keyfile: /users/Samuel/dbttest-435106-3b9420ea6257.json
@@ -22,8 +22,8 @@ GA4:
       project: dbttest-435106
       threads: 4
       type: bigquery
-    slim_ci:
-      dataset: slim_ci
+    ci:
+      dataset: ci
       job_execution_timeout_seconds: 300
       job_retries: 1
       keyfile: /users/Samuel/dbttest-435106-3b9420ea6257.json

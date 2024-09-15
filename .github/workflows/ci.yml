@@ -1,4 +1,4 @@
-name: slim_ci
+name: ci
 
 on:
   pull_request:
@@ -17,12 +17,6 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v3
 
-      - name: Checkout Main Branch for State Comparison
-        uses: actions/checkout@v3
-        with:
-          ref: main
-          path: state
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -34,21 +28,9 @@ jobs:
       - name: Install packages
         run: dbt deps
 
-      - name: Install Packages and Compile Manifest on Main Branch
-        working-directory: state
-        run: |
-          pip3 install dbt-bigquery
-          dbt deps
-          dbt compile --profiles-dir . --target slim_ci
 
       - name: Deploy & Test Models (CI)
-        run: dbt build --select state:modified+ --profiles-dir . --target slim_ci
+        run: dbt build --profiles-dir . --target ci
 
       - name: Generate dbt documentation
         run: dbt docs generate
-
-      - name: Upload dbt artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: dbt-docs
-          path: target/
