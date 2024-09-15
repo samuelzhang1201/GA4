@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     env:
       DBT_USER: ${{ secrets.DBT_USER }}
-      DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
+      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.CGP_KEY }}
 
     steps:
       - name: Checkout branch
