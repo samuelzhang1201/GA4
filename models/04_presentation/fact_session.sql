@@ -49,7 +49,7 @@ with events as (
         , event_rnb
         , max(event_rnb) over(partition by ga_session_id, event_name order by event_name) as event_count
         , event_rnb = max(event_rnb) over(partition by ga_session_id, event_name order by event_name) as is_max_equal_to_rnb
-        , include_search
+        , max(include_search) over(partition by ga_session_id ) as is_search_included
         , user_first_touch_timestamp
         , case when user_first_touch_timestamp = session_start then True else False end is_new_user
         , event_date
@@ -71,7 +71,7 @@ with events as (
         , session_start
         , session_end
         , event_count as page_view_count
-        , include_search
+        , is_search_included
         , is_new_user
         , event_date
         , current_datetime('UTC') as sys_insert_datetime
