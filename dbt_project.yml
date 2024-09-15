@@ -4,6 +4,8 @@
 # name or the intended use of these models
 name: 'GA4'
 version: '1.0.0'
+dbt-cloud:
+    project-id: 70403103961749
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'GA4'
