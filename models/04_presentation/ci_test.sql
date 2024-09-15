@@ -1,1 +1,0 @@
-select * from {{ref('fact_session')}} limit 100
