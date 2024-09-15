@@ -43,3 +43,12 @@ metrics:
     label: total_new_users
     filter: |
         {{ Dimension('fact_session_pk__is_new_user') }} = True
+
+
+  - name: avg_session_durations
+    description: session_durations
+    type: simple
+    type_params:                         
+      measure:
+        name: avg_session_duration_in_sec
+    label: avg_session_duration_in_sec
