@@ -28,8 +28,14 @@ jobs:
       - name: Install packages
         run: dbt deps
 
+      - name: Write GCP Service Account Key
+        run: |
+          echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > "${HOME}/gcp-keyfile.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${HOME}/gcp-keyfile.json" >> $GITHUB_ENV
 
       - name: Deploy & Test Models (CI)
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
         run: dbt build --profiles-dir . --target ci
 
       - name: Generate dbt documentation

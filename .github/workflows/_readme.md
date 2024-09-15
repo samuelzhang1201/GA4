@@ -1,0 +1,1 @@
+in dbt could, we can have a 'clone git repository' command to grab pre-change status and then use dbt build -s state:modified+ to run a slim CI check which 
