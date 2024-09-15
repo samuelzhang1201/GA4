@@ -36,13 +36,13 @@ models:
   GA4:
     01_landing:
       +materialized: table
-      +schema: landing
+      +schema: "{{env_var('DBT_ENV_LANDING')}}"
     02_cleansed:
       +materialized: table
-      +schema: cleansed
+      +schema: "{{env_var('DBT_ENV_CLEANSED')}}"
     03_enterprise:
       +materialized: table
-      +schema: enterprise
+      +schema: "{{env_var('DBT_ENV_ENTERPRISE')}}"
     04_presentation:
       +materialized: table
-      +schema: presentation
+      +schema: "{{env_var('DBT_ENV_PRESENTATION')}}"
