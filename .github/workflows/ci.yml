@@ -36,6 +36,8 @@ jobs:
 
       - name: Install Packages and Compile Manifest on Main Branch
         working-directory: state
+        env:
+          GCP_KEYFILE_JSON: ${{ env_var('CGP_KEY') | fromjson }}
         run: |
           pip3 install dbt-bigquery
           dbt deps
