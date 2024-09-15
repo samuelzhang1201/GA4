@@ -4,15 +4,15 @@ metrics:
     type: simple
     type_params:                         
       measure:
-        name: page_view_count
+        name: page_views
     label: Total Page Views
 
-  - name: total_sessions
+  - name: total_session_number
     description: total_sessions
     type: simple
     type_params:                         
       measure:
-        name: total_sessions
+        name: total_sessions_number
     label: total_sessions
 
   - name: total_sessions_with_search
@@ -20,7 +20,7 @@ metrics:
     type: simple
     type_params:                         
       measure:
-        name: total_sessions
+        name: total_sessions_number
     filter: |
         {{ Dimension('fact_session_pk__is_search_included') }} = 1
     label: total_sessions_with_search
@@ -30,16 +30,15 @@ metrics:
     type: simple
     type_params:                         
       measure:
-        name: total_users
+        name: total_users_numbers
     label: total_user_numbers
-
 
   - name: total_new_users
     description: total_new_users
     type: simple
     type_params:                         
       measure:
-        name: total_users
+        name: total_users_numbers
     label: total_new_users
     filter: |
         {{ Dimension('fact_session_pk__is_new_user') }} = True
@@ -50,5 +49,5 @@ metrics:
     type: simple
     type_params:                         
       measure:
-        name: avg_session_duration_in_sec
+        name: avg_session_duration
     label: avg_session_duration_in_sec
